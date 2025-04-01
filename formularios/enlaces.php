@@ -8,9 +8,9 @@
 <body>
     <div class="container">
         <h2>Asignar Estudiante a Grado</h2>
-        <form action="registrar_student_grado.php" method="POST">
-            <label for="student_id">Selecciona un Estudiante:</label>
-            <select id="student_id" name="student_id" required>
+        <form action="../controladores/registrar_student_grado.php" method="POST">
+            <label for="id_students">Selecciona un Estudiante:</label>
+            <select id="id_students" name="id_students" required>
                 <?php
                 include '../conexion/conexion.php';
                 $sql = "SELECT id, nombre, apellido FROM students";
@@ -21,8 +21,8 @@
                 ?>
             </select>
 
-            <label for="grado_id">Selecciona un Grado:</label>
-            <select id="grado_id" name="grado_id" required>
+            <label for="id_grado">Selecciona un Grado:</label>
+            <select id="id_grado" name="id_grado" required>
                 <?php
                 $sql = "SELECT id, grados FROM grado";
                 $result = $conn->query($sql);
@@ -61,7 +61,9 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
+                <?php 
+                include '../conexion/conexion.php';
+
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
