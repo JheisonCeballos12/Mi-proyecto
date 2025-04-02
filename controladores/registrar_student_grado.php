@@ -1,8 +1,7 @@
 <?php
-include '../conexion/conexion.php'; // Se dirige al archivo de conexión para conectarse a la base de datos
+include '../conexion/conexion.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { // Esto es para ver si el formulario fue enviado en método POST
-    // Comprobamos si los valores están presentes en $_POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_students = isset($_POST['id_students']) ? $_POST['id_students'] : null;
     $id_grado = isset($_POST['id_grado']) ? $_POST['id_grado'] : null;
 
@@ -10,10 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Esto es para ver si el formulario
         $sql = "INSERT INTO students_grado (id_students, id_grado) VALUES (?, ?)";
 
         if ($stmt = $conn->prepare($sql)) {
-            // Aquí se usan las variables correctas, id_students y id_grado
             $stmt->bind_param("ii", $id_students, $id_grado);
             if ($stmt->execute()) {
-                echo "Relación agregada correctamente.";
+                echo "Registro exitoso.";
             } else {
                 echo "Error al insertar: " . $stmt->error;
             }
@@ -26,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Esto es para ver si el formulario
     $conn->close();
 }
 ?>
+
 
 
 
